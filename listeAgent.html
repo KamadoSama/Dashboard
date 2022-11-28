@@ -1,0 +1,160 @@
+
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:th="http://www.thymeleaf.org" layout:decorate="~{layout/layout}">
+<head>
+<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" th:href="@{/assets/css/style4.css}">
+  	<link type="text/css" href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap4.min.css"  rel="stylesheet">
+	<link type="text/css" href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.bootstrap4.min.css"  rel="stylesheet">
+</head>
+<body>
+<div layout:fragment="sidebar">
+	<div class="sidebar" id="sidebar">
+		<div class="sidebar-inner slimscroll">
+			<div id="sidebar-menu" class="sidebar-menu">
+				<ul>
+					<li class="index">
+						<a th:href="@{/agents/index}"><i class="fa fa-tachometer" aria-hidden="true"></i>Tableau de bord</a>
+					</li>
+					<li class="active">
+						<a th:if="${@scs.hasAnyAuthority('RH', 'RESPONSABLE', 'SECRETAIRE')}" th:href="@{/agents/GoToListeAgent}"><i class="fa fa-user" aria-hidden="true"></i> <span>Gérer Personnel</span></a>
+					</li>
+					<li>
+						<a th:if="${@scs.hasAnyAuthority('RH', 'RESPONSABLE', 'SECRETAIRE')}" th:href="@{/structures/organisation}"><i class="fa fa-user" aria-hidden="true"></i> <span>Gérer Structures</span></a>
+					</li>
+					<li class="submenu">
+						<a href="#" class="active"><i class="fa fa-columns" aria-hidden="true"></i> <span>Gérer Demandes</span> <span class="menu-arrow"></span></a>
+						<ul class="list-unstyled" style="display: none;">
+							<li>
+								<a th:href="@{/demandes/GoToFormDemande}"><span>Demander Absence</span> </a>
+							</li>
+							<li>
+								<a th:href="@{/demandes/FormDemandeDoc}"><span>Demander Document</span></span></a>
+							</li>
+							<li>
+								<a  th:href="@{/demandes/ListeDemande}"><span>Mes demandes</span></span></a>
+							</li>
+							<li>
+								<a th:if="${@scs.hasAnyAuthority('RH', 'RESPONSABLE', 'SECRETAIRE')}" th:href="@{/demandes/DemandeAdressees}"><span>viser Demande </span></span></a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+	<div layout:fragment="content">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="content-page">
+					<div class="page-header">
+						<div class="row">
+							<div class="col-lg-7 col-md-12 col-sm-12 col-12">
+								<h5 class="text-uppercase">Gérer le personnel</h5>
+							</div>
+							<div class="col-lg-5 col-md-12 col-sm-12 col-12"th:if="${@scs.hasAnyAuthority('RH')}" >
+								<ul class="list-inline breadcrumb float-right">
+									<a th:href="@{/agents/GoToaddAgent}"><button class="btn btn-primary">Ajouter un agent</button></a>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<table id="example" class="table table-striped table-bordered ">
+							<thead>
+							<tr>
+								<th>Matricule</th>
+								<th>Nom</th>
+								<th style="min-width:50px!important";>Prenom</th>
+								<th style="min-width:30px!important"; >Date_naissance</th>
+								<th style="min-width:30px!important";>Email</th>
+								<th style="min-width:20px!important";>Fonction</th>
+								<th style="min-width:15px!important";>Adresse</th>
+								<th>Genre</th>
+								<th style="min-width:60px!important";>Action</th>
+							</tr>
+							</thead>
+							<tbody>
+							<tr th:each="p:${agent}">
+								<td th:text="${p.agtMatricule}">
+								<td th:text="${p.agtNom}">
+								<td th:text="${p.agtPrenom}"></td>
+								<td th:text="${p.agtDateNaiss}"></td>
+								<td th:text="${p.agtEmail}"></td>
+								<td th:text="${p.agtFonction.getFctNom()}"></td>
+								<td th:text="${p.agtAdresse}"></td>
+								<td th:text="${p.agtGenre}"></td>
+								<td>
+									<a th:href="@{/agents/goToConsult(idAgent=${p.agtId})}" style="font-size:15px;color:#36AE7C!important;";> <i class="fa fa-eye" aria-hidden="true"></i></a>
+									<a th:href="@{/agents/gotoUpdateForm(id=${p.agtId})}"style="font-size:15px;margin-left: 10px ;color:#36AE7C!important;" ><i class="fa fa-edit" aria-hidden="true"></i></a>
+									<a th:href="@{/agents/delete(idAgent=${p.agtId})}"style="font-size:15px;margin-left: 10px;color:#36AE7C!important;" > <i class="fa fa-trash" aria-hidden="true"></i>
+									</a>
+								</td>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div layout:fragment="specific-js-dependancies">
+		<script >
+			$(document).ready(function() {
+				var table = $('#example').DataTable( {
+					lengthChange:false,
+					lengthMenu:[4],
+					buttons: [ 'excel', 'pdf','print'],
+					language: {
+						"emptyTable": "Aucune donnée disponible dans le tableau",
+						"lengthMenu": "Afficher _MENU_ éléments",
+						"loadingRecords": "Chargement...",
+						"processing": "Traitement...",
+						"zeroRecords": "Aucun élément correspondant trouvé",
+						"info": "Affichage de _START_ à _END_ sur _TOTAL_ éléments",
+						"infoEmpty": "Affichage de 0 à 0 sur 0 éléments",
+						"infoFiltered": "(filtrés de _MAX_ éléments au total)",
+						"infoThousands": ".",
+						"search": "Rechercher:",
+						"searchPlaceholder": "Rechercher un agent",
+						"paginate": {
+							"first": "Premier",
+							"last": "Dernier",
+							"previous": "Précédent",
+							"next": "Suiv"
+						},
+						"buttons":{
+							"print": "Imprimer"
+
+						}
+					},
+					});
+
+				table.buttons().container()
+						.appendTo( '#example_wrapper .col-md-6:eq(0)' );
+			} );
+		</script>
+		<script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+		<script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+		<script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js"></script>
+		<script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+		<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.bootstrap4.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+		<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+		<script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+	</div>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
