@@ -1,10 +1,14 @@
+*{
+    margin:0;
+    padding: 0;
+    box-sizing: border-box;
+}
 body{
     background: #F5F5F5;
     height: 609px;
     /*width: 100%; */
-    margin:0;
-    padding: 0;
-    box-sizing: border-box;
+    
+    
 }
 html{
     min-height: 100%;
@@ -86,7 +90,7 @@ main{
     background: #FFFFFF;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 15px;
-    
+     
 }
 .chart{
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
@@ -139,3 +143,38 @@ main{
     width: 200%;
 }
 
+.information div div{
+    width:100% ;
+    height: 30%;
+    box-shadow: none;
+    color: #3A335C;
+    /* text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25); */
+    
+}
+.information div div span{
+    font-size: 45px;
+    margin-left: 21%;
+}
+.information div div h2{
+    margin-left: 30%;
+}
+.jours{
+    font-size: inherit !important;
+    margin-left: 0px !important;
+}
+h2 span{
+    font-size: inherit !important;
+    margin-left: 0px !important;
+}
+/* .ventes span{
+    
+    margin-left: 21%;
+}  */
+/* .client span{
+    font-size: 35px !important;
+    margin-left: 21%;
+} */
+i{
+    color: #001E34;
+    text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}

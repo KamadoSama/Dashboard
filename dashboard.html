@@ -5,6 +5,8 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="dashboard.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" >
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/solid.min.css">
         <title>Dashboard</title>
     </head>
     <body>
@@ -36,25 +38,38 @@
             </div>
             <div class="container">
                 <div class="information">
-                    <div class="article">
-                       
+                    <div class="article ">
+                      <div><i class="fa-solid fa-franc-sign fa-3x"></i> <span>100</span></div>
+                      <div style="margin-top: 3%;"> <h2>Article Vendus</h2></div>
+                      <div style="margin-top: 3%; padding: 5%;"> <h3>Il y a <span class="jours">10</span> jours</h3> </div>
                     </div>
-                    <div class="ventes"></div>
-                    <div class="client"></div>
+                    <div class="ventes">
+                      <div class><i class="fa-solid fa-wallet fa-3x"></i> <span style="font-size: 35px !important;">Ventes</span> </div>
+                      <div style="margin-top: 3%;"> <h2><span >200.000</span>Fcfa</h2></div>
+                      <div style="margin-top: 3%; padding: 5%;"> <h3>Il y a <span class="jours">10</span> jours</h3> </div>
+                    </div>
+                    <div class="client">
+                      <div class=>
+                        <i class="fa-solid fa-users fa-3x"></i> <span style="font-size: 35px !important;">Clients</span>
+                      </div>
+                      <div style="margin-top: 3%;"> <span style="margin-left: 35%;">15</span></div>
+                      <div style="margin-top: 3%; padding: 5%;"> <h3>Il y a <span class="jours">10</span> jours</h3> </div>
+                    </div>
                 </div>
                 <div class="chart">
                     <div id="chart1"><canvas id="myChart"></canvas></div>
-                    <div id="chart2"><canvas id="myChart1"></canvas></div>
+                    <div id="chart2" style="width: 37%;"><canvas id="myChart1"></canvas></div>
                 </div>
             </div>
         </main> 
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@4.0.1/dist/chart.umd.min.js"></script>
         <script src="Utils.js"></script>
+        <script src="app.js"></script>
 <script>
 
-  const ctx = document.getElementById('myChart');
-  const ctx1 = document.getElementById('myChart1');
+  const ctx = document.getElementById('myChart')
+  const ctx1 = document.getElementById('myChart1')
 
   /*new Chart(ctx, {
     type: 'bar',
