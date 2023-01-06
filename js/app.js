@@ -7,3 +7,13 @@ balise_i.addEventListener('click',function(e){
         this.classList.remove('fa-spin-pulse')
     }
 })
+
+
+let docTitle = document.title
+
+window.addEventListener("blur",()=>{
+    document.title = "reviens 😥"
+})
+window.addEventListener("focus", ()=>{
+    document.title = docTitle
+})
