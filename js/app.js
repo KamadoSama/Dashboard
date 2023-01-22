@@ -17,3 +17,15 @@ window.addEventListener("blur",()=>{
 window.addEventListener("focus", ()=>{
     document.title = docTitle
 })
+
+let chart =document.querySelector(".chart")
+
+chart.style.display = 'none'
+
+const preloaderWrapper = document.querySelector('.preloader-wrapper');
+
+        setTimeout( function() {
+            preloaderWrapper.classList.add('fade-out-animation');
+            document.body.removeChild(document.querySelector(".preloader-wrapper"))
+            chart.style.display = 'flex'
+        },1500)
