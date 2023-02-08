@@ -1,12 +1,94 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/index.css" />
+    <!-- <link rel="stylesheet" href="loader.css"> -->
+    <title>Connexion</title>
+    <style>
+     
+      #show-password{
+        position: absolute;
+        top: 5px;
+        right: 4px;
+        height: 98%;
+        align-items: center;
+        display: flex;
+        
+      }
+      
+    </style>
+  </head>
+  <body>
+    <!-- <div class="loader" style="position: fixed; width: 100%; height: 100%;">
+      <svg class="pl" width="240" height="240" viewBox="0 0 240 240">
+        <circle class="pl__ring pl__ring--a" cx="120" cy="120" r="105" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 660" stroke-dashoffset="-330" stroke-linecap="round"></circle>
+        <circle class="pl__ring pl__ring--b" cx="120" cy="120" r="35" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 220" stroke-dashoffset="-110" stroke-linecap="round"></circle>
+        <circle class="pl__ring pl__ring--c" cx="85" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
+        <circle class="pl__ring pl__ring--d" cx="155" cy="120" r="70" fill="none" stroke="#000" stroke-width="20" stroke-dasharray="0 440" stroke-linecap="round"></circle>
+      </svg>
+    </div> -->
+    <header>
+
+     
+    </header>
+
+    <main style="display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 5%">
+      <div class="videHaut"></div>
+      <div class="menu">
+        <h1>Se connecter</h1>
+        <!-- Formulaire connexion -->
+        <form id="login" >
+          <div class="entrer">
+            <div id="appro">
+              <img
+                src="assets/authentication-animate.svg"
+                alt="un"
+                height="100%"
+                width="100%"
+                id="svg"
+              />
+            </div>
+            <div id="myIput" style="display: flex; flex-direction:column; align-items: center; vertical-align: center;">
+              <p style="margin-top: 26%;">
+                <!-- <label for="desi">Désignation</label><br> -->
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  placeholder="email"
+                />
+              </p>
+
+              <p style="position: relative;">
+                <!-- <label for="quant">Quantité </label><br> -->
+                <span id="show-password"><iconify-icon id="icon" icon="zmdi:eye-off"></iconify-icon></span>
+                <input
+                  type="password"
+                  id="password"
+                  name="password"
+                  required
+                  placeholder="mot de passe"
+                />
+                
+              </p>
+            </div>
+          </div>
+          <div>
+            <input type="submit" id="submit" value="Se connecter" />
+          </div>
+        </form>
+      </div>
+    </main>
     
-</body>
+    <script src="https://code.iconify.design/iconify-icon/1.0.3/iconify-icon.min.js"></script>
+    <script type="text/javascript" src="js/connexion.js"></script>
+    <script src="js/server.js"></script>
+    </body>
 </html>
